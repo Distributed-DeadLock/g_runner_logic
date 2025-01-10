@@ -1,0 +1,85 @@
+-- thanks to rubenwardy for the inventory (de)serialization
+
+--  detached inventory for managing the pice-lists
+local priceinv = core.create_detached_inventory("g_runner_logic_pricemanage", {
+    on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
+		local list = inv:get_list("price")
+		local retval = {}
+		for _, stack in pairs(list) do
+			retval[#retval + 1] = stack:to_string()
+		end
+		local data_base = core.serialize(retval)			
+        g_runner_logic.storage:set_string("price" .. g_runner_logic.storage:get_string("pricerank"), data_base)
+    end,
+
+    on_put = function(inv, listname, index, stack, player)
+		local list = inv:get_list("price")
+		local retval = {}
+		for _, stack in pairs(list) do
+			retval[#retval + 1] = stack:to_string()
+		end
+		local data_base = core.serialize(retval)			
+        g_runner_logic.storage:set_string("price" .. g_runner_logic.storage:get_string("pricerank"), data_base)
+    end,
+
+    on_take = function(inv, listname, index, stack, player)
+		local list = inv:get_list("price")
+		local retval = {}
+		for _, stack in pairs(list) do
+			retval[#retval + 1] = stack:to_string()
+		end
+		local data_base = core.serialize(retval)			
+        g_runner_logic.storage:set_string("price" .. g_runner_logic.storage:get_string("pricerank"), data_base)
+    end,
+})
+priceinv:set_size("price", 8*1)
+
+-- show the price-management inventory for a given rank or "over"
+local function showprice(player, rank)
+	local pricelist = g_runner_logic.storage:get("price" .. rank)  -- from get_string
+	if rank then
+		g_runner_logic.storage:set_string("pricerank", rank)
+		local inv = core.get_inventory({type="detached", name="g_runner_logic_pricemanage"})
+		if pricelist then			
+			local list_strings = core.deserialize(pricelist)
+			local list = {}
+			for _, str in pairs(list_strings) do
+				list[#list + 1] = ItemStack(str)
+			end		
+			inv:set_list("price", list)
+		else
+			inv:set_list("price", {})
+		end
+		
+		local formspec = {
+				"size[8,6]"..
+				default.gui_bg ..
+				default.gui_bg_img ..
+				default.gui_slots ..
+				"list[detached:g_runner_logic_pricemanage;price;0,0.3;8,1;]"..
+				"list[current_player;main;0,1.85;8,1;]" ..
+				"list[current_player;main;0,3.08;8,3;8]" ..
+				"listring[detached:g_runner_logic_pricemanage;price]" ..
+				"listring[current_player;main]" ..
+				default.get_hotbar_bg(0,1.85)
+				}
+				
+		core.show_formspec(player, "g_runner_logic:pricemanage", table.concat(formspec, ""))
+	end
+end
+
+-- chatcommand to show price-management inventory. limit params to numbers and "over"
+core.register_chatcommand("pricemanage", {
+	params = "<rank> | over",
+    description = "Manage the Runner-Game Prices",
+	privs = {
+        pricemanage = true,
+    },
+    func = function(name, param)
+		if (type(tonumber(param)) == "number") or (param == "over") then
+			showprice(name, param)
+		else
+			core.chat_send_player(name, "Wrong Parameter. Only numbers or \"over\" allowed")
+		end
+    end,
+})
