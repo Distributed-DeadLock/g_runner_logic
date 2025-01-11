@@ -52,3 +52,16 @@ The Block reacts to
 it will then respond with a string with `\<Highscore-Position\>. \<Playername\> \<Best-Time\>` or `0` if that position does not exist.
 
 ![The Digiline](screenshots/digiline-node.png)
+
+-------------
+
+For this game-mode to make sense, it is required to:
++ disable teleport-commands for players
++ disable teleport to home
++ not have any Teleport-Devices readily availiable to the players
+
+Suggested to use with this mod:
++ all interesting vehicle mods
++ all monster mods
++ any funny or dangerous biome
++ my own "respawn-kit"-mod
