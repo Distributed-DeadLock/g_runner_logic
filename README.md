@@ -49,7 +49,7 @@ Digiline Block Usage:
 The Block reacts to 
 + GET \<number\>		-	where number is a Highscore-Position (e.g. `GET 1` for the first place) 
 
-it will then respond with a string with `\<Highscore-Position\>. \<Playername\> \<Best-Time\>` or `0` if that position does not exist.
+it will then respond with a string with `<Highscore-Position>. <Playername> <Best-Time>` or `0` if that position does not exist.
 
 ![The Digiline](screenshots/digiline-node.png)
 
