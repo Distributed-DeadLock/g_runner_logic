@@ -65,3 +65,14 @@ Suggested to use with this mod:
 + all monster mods
 + any funny or dangerous biome
 + my own "respawn-kit"-mod
+
+------------ 
+License: Code: MIT , Textures: CC0
+Mod dependencies: default
+Credits: 
+based on parts of :
+https://github.com/minefaco/death_cetro by 1faco &
+https://github.com/MeseCraft/void_chest by MeseCraft &
+https://github.com/Darin755/minetest-uptime-stats by Darin755
+
+Author: DeadLock

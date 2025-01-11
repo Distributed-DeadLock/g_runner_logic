@@ -1,3 +1,5 @@
+-- Goal-block & Prize-Chest
+-- Prize-Chest based on MeseCrafts mod: https://github.com/MeseCraft/void_chest
 -- Register the goal-block.
 core.register_node("g_runner_logic:the_goal", {
 	description = "The Goal",
