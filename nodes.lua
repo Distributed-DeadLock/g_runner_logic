@@ -33,19 +33,19 @@ core.register_node("g_runner_logic:the_goal", {
 				rank = rank + 1
 				pmeta:set_int("g_runner_logic:rank", rank)
 				core.chat_send_player(playername, "Your are now Rank: " .. rank)
-				core.chat_send_player(playername, "Check the Price-Chest!")
-				local pricelist = g_runner_logic.storage:get("price" .. rank)
-				if pricelist then			
-					local list_strings = core.deserialize(pricelist)
+				core.chat_send_player(playername, "Check the Prize-Chest!")
+				local prizelist = g_runner_logic.storage:get("prize" .. rank)
+				if prizelist then			
+					local list_strings = core.deserialize(prizelist)
 					for _, str in pairs(list_strings) do
-						maininv:add_item("g_runner_logic:price_chest", ItemStack(str))
+						maininv:add_item("g_runner_logic:prize_chest", ItemStack(str))
 					end
 				else
-					local pricelist = g_runner_logic.storage:get("price" .. "over")
-					if pricelist then
-						local list_strings = core.deserialize(pricelist)
-						maininv:add_item("g_runner_logic:price_chest", ItemStack(list_strings[math.random(1, 8)]))
-						maininv:add_item("g_runner_logic:price_chest", ItemStack(list_strings[math.random(1, 8)]))
+					local prizelist = g_runner_logic.storage:get("prize" .. "over")
+					if prizelist then
+						local list_strings = core.deserialize(prizelist)
+						maininv:add_item("g_runner_logic:prize_chest", ItemStack(list_strings[math.random(1, 8)]))
+						maininv:add_item("g_runner_logic:prize_chest", ItemStack(list_strings[math.random(1, 8)]))
 					end
 				end
 				
@@ -67,11 +67,11 @@ core.register_node("g_runner_logic:the_goal", {
     end,
 })
 
--- Register the price-chest.
-core.register_node("g_runner_logic:price_chest", {
-	description = "" ..core.colorize("#229944","Prize Chest\n") ..core.colorize("#FFFFFF", "Check for prices after each run."),
-	tiles = {"g_runner_logic_pricechest_top.png", "g_runner_logic_pricechest_top.png", "g_runner_logic_pricechest_side.png",
-		"g_runner_logic_pricechest_side.png", "g_runner_logic_pricechest_side.png", "g_runner_logic_pricechest_front.png"},
+-- Register the prize-chest.
+core.register_node("g_runner_logic:prize_chest", {
+	description = "" ..core.colorize("#229944","Prize Chest\n") ..core.colorize("#FFFFFF", "Check for prizes after each run."),
+	tiles = {"g_runner_logic_prizechest_top.png", "g_runner_logic_prizechest_top.png", "g_runner_logic_prizechest_side.png",
+		"g_runner_logic_prizechest_side.png", "g_runner_logic_prizechest_side.png", "g_runner_logic_prizechest_front.png"},
 	paramtype2 = "facedir",
 	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2,},
 	legacy_facedir_simple = true,
@@ -83,13 +83,13 @@ core.register_node("g_runner_logic:price_chest", {
 				default.gui_bg ..
 				default.gui_bg_img ..
 				default.gui_slots ..
-				"list[current_player;g_runner_logic:price_chest;0,0.3;8,2;]"..
+				"list[current_player;g_runner_logic:prize_chest;0,0.3;8,2;]"..
 				"list[current_player;main;0,1.85;8,1;]" ..
 				"list[current_player;main;0,3.08;8,3;8]" ..
-				"listring[current_player;g_runner_logic:price_chest]" ..
+				"listring[current_player;g_runner_logic:prize_chest]" ..
 				"listring[current_player;main]" ..
 				default.get_hotbar_bg(0,1.85))
 
-		meta:set_string("infotext", "Price Chest")
+		meta:set_string("infotext", "prize Chest")
 	end,	
 })

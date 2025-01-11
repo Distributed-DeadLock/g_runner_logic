@@ -8,7 +8,7 @@
  
  When you die, your time gets reset and you start a new run.
  
- Every time you reach the goal, you gain a rank and get a price(prices need to be configured by the admin).
+ Every time you reach the goal, you gain a rank and get a prize(prizes need to be configured by the admin).
  
  Your time is recorded in a Highscore-Table, so you can compete on the fastest time.
  
@@ -17,7 +17,7 @@
  The mod provides 3 non-craftable blocks:
  
  + The Goal Block				-	punch it to end your run.
- + The Price Chest				-	contains your prices after you punched the Goal Block.
+ + The Prize Chest				-	contains your prizes after you punched the Goal Block.
  + The Digiline Status Block	-	(with digiline-mod installed) returns the Name & Time of a Position in the Highscore-Table
  
  ![The Nodes](screenshots/nodes.png)
@@ -32,13 +32,13 @@ Player-Commands:
 + /highscores					-	Show the Highscore-Table
 + /who							-	Show the Players currently online, their Rank & and Run-Status (if running or finnished)
 
-Admin-Command:	(requires priv "pricemanage")
+Admin-Command:	(requires priv "prizemanage")
 
-+ /pricemanage \<number\> | over	-	opens the Price-Inventory for a Rank or the "over"-inventory
++ /prizemanage \<number\> | over	-	opens the prize-Inventory for a Rank or the "over"-inventory
 
-Example Usage: `/pricemanage 1` , `/pricemanage 12` or `/pricemanage over`
+Example Usage: `/prizemanage 1` , `/prizemanage 12` or `/prizemanage over`
  
-A copy of every item in a Price-Inventory for a Rank will be given to the player when he reaches that Rank.
+A copy of every item in a prize-Inventory for a Rank will be given to the player when he reaches that Rank.
 
 When there is no Rank-Inventory for a certain Rank, the player instead receives 2 random items from the "over"-inventory.
 

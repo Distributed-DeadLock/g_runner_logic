@@ -17,7 +17,7 @@ end
 g_runner_logic.highscore = core.deserialize(s_highscorelist)	
 
 -- register priv for price setup
-core.register_privilege("pricemanage", {
+core.register_privilege("prizemanage", {
     description = "Can manage the prices for the runner Game",
     give_to_singleplayer = true
 })
@@ -35,10 +35,10 @@ function g_runner_logic.SecondsToClock(seconds)
   end
 end
 
--- Create a price chest inv & Init player values when first connected.
+-- Create a prize chest inv & Init player values when first connected.
 core.register_on_joinplayer(function(player,last_login)
 	local inv = player:get_inventory()
-	inv:set_size("g_runner_logic:price_chest", 8*1)
+	inv:set_size("g_runner_logic:prize_chest", 8*1)
 	if not last_login then
 		local pmeta = player:get_meta()
 		pmeta:set_int("g_runner_logic:rank", 0)
@@ -55,7 +55,7 @@ core.register_on_respawnplayer(function(player)
 end)
 
 
-dofile(modpath .. "/priceconfig.lua")
+dofile(modpath .. "/prizeconfig.lua")
 dofile(modpath .. "/nodes.lua")
 dofile(modpath .. "/stats.lua")
 if core.get_modpath("digilines") then
