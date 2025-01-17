@@ -55,12 +55,15 @@ it will then respond with a string with `<Highscore-Position>. <Playername> <Bes
 
 -------------
 
-The mod adds a Black Chestplate if the 3d_armor mod is installed. (same armor values as crystal, but with 3x durability. Not craftable)
+The mod adds a Black Chestplate if the 3d_armor mod is installed. 
+(same armor values as crystal, but with 3x durability. Not craftable)
+
 The Black Chestplate will be awarded to players who reach position 1 on the global Highscore-Table.
 
 -------------
 
 Mod dependencies: default
+
 optional Mod dependencies: digilines, 3d_armor
 
 -------------
