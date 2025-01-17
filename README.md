@@ -55,6 +55,16 @@ it will then respond with a string with `<Highscore-Position>. <Playername> <Bes
 
 -------------
 
+The mod adds a Black Chestplate if the 3d_armor mod is installed. (same armor values as crystal, but with 3x durability. Not craftable)
+The Black Chestplate will be awarded to players who reach position 1 on the global Highscore-Table.
+
+-------------
+
+Mod dependencies: default
+optional Mod dependencies: digilines, 3d_armor
+
+-------------
+
 For this game-mode to make sense, it is required to:
 + disable teleport-commands for players
 + disable teleport to home
@@ -65,14 +75,3 @@ Suggested to use with this mod:
 + all monster mods
 + any funny or dangerous biome
 + my own "respawn-kit"-mod
-
------------- 
-License: Code: MIT , Textures: CC0
-Mod dependencies: default
-Credits: 
-based on parts of :
-https://github.com/minefaco/death_cetro by 1faco &
-https://github.com/MeseCraft/void_chest by MeseCraft &
-https://github.com/Darin755/minetest-uptime-stats by Darin755
-
-Author: DeadLock

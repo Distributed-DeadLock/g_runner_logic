@@ -61,3 +61,6 @@ dofile(modpath .. "/stats.lua")
 if core.get_modpath("digilines") then
 	dofile(modpath .. "/dl_block.lua")
 end
+if core.get_modpath("3d_armor") then
+	dofile(modpath .. "/chestplate.lua")
+end

@@ -1,5 +1,3 @@
--- Goal-block & Prize-Chest
--- Prize-Chest based on MeseCrafts mod: https://github.com/MeseCraft/void_chest
 -- Register the goal-block.
 core.register_node("g_runner_logic:the_goal", {
 	description = "The Goal",
@@ -50,19 +48,34 @@ core.register_node("g_runner_logic:the_goal", {
 						maininv:add_item("g_runner_logic:prize_chest", ItemStack(list_strings[math.random(1, 8)]))
 					end
 				end
-				
+				-- check for personal best-time
 				local besttime = pmeta:get_int("g_runner_logic:besttime")
 				if (currenttime < besttime) then
 					core.chat_send_all(playername .. " set a new personal Best-Time with: " .. g_runner_logic.SecondsToClock(currenttime) .. " (H:M:S)")
 					pmeta:set_int("g_runner_logic:besttime", currenttime)
 					g_runner_logic.highscore[playername] = currenttime
-					g_runner_logic.storage:set_string("highscores", core.serialize(g_runner_logic.highscore))
+					g_runner_logic.storage:set_string("highscores", core.serialize(g_runner_logic.highscore))	
 				elseif (besttime == 0) then
 					core.chat_send_all(playername .. " finnished the first Run in: " .. g_runner_logic.SecondsToClock(currenttime) .. " (H:M:S)")
 					pmeta:set_int("g_runner_logic:besttime", currenttime)
 					g_runner_logic.highscore[playername] = currenttime
 					g_runner_logic.storage:set_string("highscores", core.serialize(g_runner_logic.highscore))					
 				end
+				-- check for global highscore
+				local sorting = {}
+				for i,v in pairs(g_runner_logic.highscore) do
+					table.insert(sorting, {i, v})
+				end
+				table.sort(sorting, function (k1, k2) return tonumber(k1[2]) < tonumber(k2[2]) end )
+				-- if player is fastest on highscore list
+				if sorting[1][2] == currenttime then
+					if core.get_modpath("3d_armor") then
+						maininv:add_item("g_runner_logic:prize_chest", ItemStack("g_runner_logic:chestplate_black"))
+						core.chat_send_all(playername .. "just set the fastest time with: " .. g_runner_logic.SecondsToClock(currenttime) .. " (H:M:S)")
+						core.chat_send_player(playername, "Check the Prize-Chest for your new Black Chestplate!")
+					end
+				end
+				
 				pmeta:set_int("g_runner_logic:starttime", 0)
 			end
         end
