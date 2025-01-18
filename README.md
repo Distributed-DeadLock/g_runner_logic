@@ -62,6 +62,8 @@ The Black Chestplate will be awarded to players who reach position 1 on the glob
 
 -------------
 
+License: Code: MIT , Textures: CC0
+
 Mod dependencies: default
 
 optional Mod dependencies: digilines, 3d_armor
