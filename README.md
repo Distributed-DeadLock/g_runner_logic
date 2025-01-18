@@ -62,14 +62,6 @@ The Black Chestplate will be awarded to players who reach position 1 on the glob
 
 -------------
 
-License: Code: MIT , Textures: CC0
-
-Mod dependencies: default
-
-optional Mod dependencies: digilines, 3d_armor
-
--------------
-
 For this game-mode to make sense, it is required to:
 + disable teleport-commands for players
 + disable teleport to home
@@ -80,3 +72,21 @@ Suggested to use with this mod:
 + all monster mods
 + any funny or dangerous biome
 + my own "respawn-kit"-mod
+
+-------------
+
+**License**: Code: MIT , Textures: CC0
+
+**Mod dependencies**: default
+
+**optional Mod dependencies**: digilines, 3d_armor
+
+**Credits**: 
+
+based on parts of :
+
+https://github.com/MeseCraft/void_chest by MeseCraft &
+
+https://github.com/Darin755/minetest-uptime-stats by Darin755
+
+**Author**: DeadLock
