@@ -37,7 +37,7 @@ Player-Commands:
 
 Admin-Command:
 
-	(requires priv "prizemanage")
+- (requires priv "prizemanage")
 + /prizemanage \<number\> | over	-	opens the prize-Inventory for a Rank or the "over"-inventory
 
 Example Usage: `/prizemanage 1` , `/prizemanage 12` or `/prizemanage over`
@@ -47,7 +47,7 @@ A copy of every item in a prize-Inventory for a Rank will be given to the player
 When there is no Rank-Inventory for a certain Rank, the player instead receives 2 random items from the "over"-inventory.
 
 
-	(requires priv "newseason")
+- (requires priv "newseason")
 + /newseason 						-	Start a new Season
 
 A New Season will be started. 
