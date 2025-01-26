@@ -12,6 +12,8 @@
  
  Your time is recorded in a Highscore-Table, so you can compete on the fastest time.
  
+ Admins can advance to a new "Season", which will reset the highscores and all personal times.
+ 
  -------------
  
  The mod provides 3 non-craftable blocks:
@@ -24,16 +26,18 @@
 
 --------------
 
-The mod has 3 chat-commands for players & one for the admin.
+The mod has 4 chat-commands for players & 2 for the admin.
 
 Player-Commands:
 
 + /mystats 						-	Show your Rank, Best-Time & Last-Time 
 + /highscores					-	Show the Highscore-Table
 + /who							-	Show the Players currently online, their Rank & and Run-Status (if running or finnished)
++ /seasonwinners				-	Show the Winners of previous Seasons
 
-Admin-Command:	(requires priv "prizemanage")
+Admin-Command:
 
+	(requires priv "prizemanage")
 + /prizemanage \<number\> | over	-	opens the prize-Inventory for a Rank or the "over"-inventory
 
 Example Usage: `/prizemanage 1` , `/prizemanage 12` or `/prizemanage over`
@@ -41,6 +45,15 @@ Example Usage: `/prizemanage 1` , `/prizemanage 12` or `/prizemanage over`
 A copy of every item in a prize-Inventory for a Rank will be given to the player when he reaches that Rank.
 
 When there is no Rank-Inventory for a certain Rank, the player instead receives 2 random items from the "over"-inventory.
+
+
+	(requires priv "newseason")
++ /newseason 						-	Start a new Season
+
+A New Season will be started. 
+The Top-3 Results of the current season will be stored in the seasonwinner-list. 
+The highcore-list and all player times will be reset.
+Players need to respawn to join the new season.
 
 ------------- 
 
