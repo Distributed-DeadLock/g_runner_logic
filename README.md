@@ -35,7 +35,7 @@ Player-Commands:
 + /who							-	Show the Players currently online, their Rank & and Run-Status (if running or finnished)
 + /seasonwinners				-	Show the Winners of previous Seasons
 
-Admin-Command:
+Admin-Commands:
 
 (requires priv "prizemanage")
 + /prizemanage \<number\> | over	-	opens the prize-Inventory for a Rank or the "over"-inventory
