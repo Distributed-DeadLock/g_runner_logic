@@ -49,6 +49,7 @@ When there is no Rank-Inventory for a certain Rank, the player instead receives 
 
 (requires priv "newseason")
 + /newseason 						-	Start a new Season
+
 A New Season will be started. 
 The Top-3 Results of the current season will be stored in the seasonwinner-list. 
 The highcore-list and all player times will be reset.
