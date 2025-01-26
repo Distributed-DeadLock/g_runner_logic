@@ -25,6 +25,13 @@ core.register_node("g_runner_logic:the_goal", {
 			local starttime = pmeta:get_int("g_runner_logic:starttime")
 			local playername = puncher:get_player_name()
 			local maininv = puncher:get_inventory()
+			local pseason = tonumber(pmeta:get_int("g_runner_logic:season"))
+			if not (pseason == tonumber(g_runner_logic.season)) then
+				core.chat_send_player(playername, "Sorry, you are still in the old Season: " .. pseason)
+				core.chat_send_player(playername, "Current Season is: " .. g_runner_logic.season)
+				core.chat_send_player(playername, "Die and respawn to join the current season!")
+				return
+			end
 			if (starttime > 0) then
 				local currenttime = now - starttime
 				pmeta:set_int("g_runner_logic:lasttime", currenttime)
