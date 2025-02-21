@@ -1,3 +1,9 @@
+--create dummy-function to be overriden, if another mod wants to be notified on run-finnishes
+g_runner_logic.on_run_finish = function(playername, finished, personalbest, globalbest)
+	return
+end
+
+
 -- Register the goal-block.
 core.register_node("g_runner_logic:the_goal", {
 	description = "The Goal",
@@ -32,6 +38,9 @@ core.register_node("g_runner_logic:the_goal", {
 				core.chat_send_player(playername, "Die and respawn to join the current season!")
 				return
 			end
+			local finished = false
+			local personalbest = false
+			local globalbest = false
 			if (starttime > 0) then
 				local currenttime = now - starttime
 				pmeta:set_int("g_runner_logic:lasttime", currenttime)
@@ -41,6 +50,7 @@ core.register_node("g_runner_logic:the_goal", {
 				pmeta:set_int("g_runner_logic:rank", rank)
 				core.chat_send_player(playername, "Your are now Rank: " .. rank)
 				core.chat_send_player(playername, "Check the Prize-Chest!")
+				finished = true
 				local prizelist = g_runner_logic.storage:get("prize" .. rank)
 				if prizelist then			
 					local list_strings = core.deserialize(prizelist)
@@ -62,11 +72,13 @@ core.register_node("g_runner_logic:the_goal", {
 					pmeta:set_int("g_runner_logic:besttime", currenttime)
 					g_runner_logic.highscore[playername] = currenttime
 					g_runner_logic.storage:set_string("highscores", core.serialize(g_runner_logic.highscore))	
+					personalbest = true
 				elseif (besttime == 0) then
 					core.chat_send_all(playername .. " finnished the first Run in: " .. g_runner_logic.SecondsToClock(currenttime) .. " (H:M:S)")
 					pmeta:set_int("g_runner_logic:besttime", currenttime)
 					g_runner_logic.highscore[playername] = currenttime
-					g_runner_logic.storage:set_string("highscores", core.serialize(g_runner_logic.highscore))					
+					g_runner_logic.storage:set_string("highscores", core.serialize(g_runner_logic.highscore))
+					personalbest = true
 				end
 				-- check for global highscore
 				local sorting = {}
@@ -78,13 +90,15 @@ core.register_node("g_runner_logic:the_goal", {
 				if sorting[1][2] == currenttime then
 					if core.get_modpath("3d_armor") then
 						maininv:add_item("g_runner_logic:prize_chest", ItemStack("g_runner_logic:chestplate_black"))
-						core.chat_send_all(playername .. "just set the fastest time with: " .. g_runner_logic.SecondsToClock(currenttime) .. " (H:M:S)")
 						core.chat_send_player(playername, "Check the Prize-Chest for your new Black Chestplate!")
 					end
+					core.chat_send_all(playername .. "just set the fastest time with: " .. g_runner_logic.SecondsToClock(currenttime) .. " (H:M:S)")
+					globalbest = true
 				end
 				
 				pmeta:set_int("g_runner_logic:starttime", 0)
 			end
+			g_runner_logic.on_run_finish(playername, finished, personalbest, globalbest)
         end
     end,
 })
@@ -112,6 +126,6 @@ core.register_node("g_runner_logic:prize_chest", {
 				"listring[current_player;main]" ..
 				default.get_hotbar_bg(0,1.85))
 
-		meta:set_string("infotext", "prize Chest")
+		meta:set_string("infotext", "Prize Chest")
 	end,	
 })

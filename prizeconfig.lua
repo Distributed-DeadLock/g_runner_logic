@@ -1,5 +1,3 @@
--- thanks to rubenwardy for the inventory (de)serialization
-
 --  detached inventory for managing the pice-lists
 local prizeinv = core.create_detached_inventory("g_runner_logic_prizemanage", {
     on_move = function(inv, from_list, from_index, to_list, to_index, count, player)

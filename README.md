@@ -68,38 +68,62 @@ it will then respond with a string with `<Highscore-Position>. <Playername> <Bes
 
 -------------
 
-The mod adds a Black Chestplate if the 3d_armor mod is installed. 
-(same armor values as crystal, but with more durability. Not craftable)
+The mod adds a Black Chestplate if the 3d_armor mod is installed.  
+(same armor values as crystal, but with more durability. Not craftable)  
 
-The Black Chestplate will be awarded to players who reach position 1 on the global Highscore-Table.
+The Black Chestplate will be awarded to players who reach position 1 on the global Highscore-Table.  
 
--------------
+-------------  
 
-For this game-mode to make sense, it is required to:
-+ disable teleport-commands for players
-+ disable teleport to home
-+ not have any Teleport-Devices readily availiable to the players
+For this game-mode to make sense, it is required to:  
++ disable teleport-commands for players  
++ disable teleport to home  
++ not have any Teleport-Devices readily availiable to the players  
 
-Suggested to use with this mod:
-+ all interesting vehicle mods
-+ all monster mods
-+ any funny or dangerous biome
-+ my own "respawn-kit"-mod
+Suggested to use with this mod:  
++ all interesting vehicle mods  
++ all monster mods  
++ any funny or dangerous biome  
++ my own "respawn-kit"-mod  
 
--------------
+-------------  
 
-**License**: Code: MIT , Textures: CC0
+API ?:
+To get notified if a player ends(or tries to) his run by punching the goal,  
+hook g_runner_logic.on_run_finish(playername, finished, personalbest, globalbest).  
++ cache the original function  
++ overwrite g_runner_logic.on_run_finish with your own function  
++ call the cached original function at the end of your function  
+finished will be true if a run was finished with this punch.  
+personalbest will be true if player set a personal Best-Time.   
+globalbest will be true if player set a global Best-Time.  
+  
+  
+g_runner_logic.highscore contains the current highscorelist.  
+g_runner_logic.seasonscore contains the all-seasons best times list.  
+g_runner_logic.season contains the current season nr.  
 
-**Mod dependencies**: default
+each player now has the following player-metas set:  
+"g_runner_logic:rank"  
+"g_runner_logic:starttime"  
+"g_runner_logic:lasttime"  
+"g_runner_logic:besttime"  
+"g_runner_logic:season"  
 
-**optional Mod dependencies**: digilines, 3d_armor
+-------------  
 
-**Credits**: 
+**License**: Code: MIT , Textures: CC0  
 
-based on parts of :
+**Mod dependencies**: default  
 
-https://github.com/MeseCraft/void_chest by MeseCraft &
+**optional Mod dependencies**: digilines, 3d_armor  
 
-https://github.com/Darin755/minetest-uptime-stats by Darin755
+**Thanks**:  
 
-**Author**: DeadLock
+My Knowledge about how to expand the player-inventory & how to interact with digilines is based on parts of :  
+
+https://github.com/MeseCraft/void_chest by MeseCraft &  
+
+https://github.com/Darin755/minetest-uptime-stats by Darin755   
+
+**Author**: DeadLock  
